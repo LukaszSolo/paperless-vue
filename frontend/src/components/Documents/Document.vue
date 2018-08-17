@@ -13,7 +13,7 @@
         </div>
       </v-slide-y-transition>
       <p class="navigation">
-          <v-btn fab icon small color="success" @click="show = !show">
+          <v-btn fab dark small color="success" @click="show = !show">
            <v-icon>{{ show ? 'remove_red_eye' : 'remove_red_eye' }}</v-icon>
           </v-btn>
           <v-btn fab dark small color="warning" v-on:click="getFile()">
@@ -28,6 +28,7 @@
 
 <script>
 import Tags from '../Widgets/Tags'
+
 export default {
   name: 'Document',
   props: ['doc'],

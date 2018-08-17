@@ -13,9 +13,9 @@
           <v-divider />
           <p class="font-weight-thin body-2"  v-html="content"></p>
           <v-divider />
-          <v-btn fab dark small color="warning" v-on:click="getFile()">
-            <v-icon dark>archive</v-icon>
-          </v-btn>
+          <DownloadDocument :doc="doc" />
+          <EditDocument :doc="doc" :selectedTags="tags" />
+          <DeleteDocument :doc="doc" />
         </v-flex>
         <v-flex xs6>
           <img :src="image" class="scan elevation-2" height="auto" />
@@ -38,6 +38,10 @@
 <script>
 import Breadcrumbs from '../Widgets/Breadcrumbs'
 import Tags from '../Widgets/Tags'
+import DownloadDocument from './Download'
+import EditDocument from './Edit'
+import DeleteDocument from './Delete'
+
 export default {
   name: 'DocumentView',
   created () {
@@ -60,22 +64,6 @@ export default {
   },
 
   methods: {
-    getFile () {
-      this.$http({
-        url: this.doc.download_url,
-        method: 'GET',
-        responseType: 'blob'
-      }).then((response) => {
-        const url = window.URL.createObjectURL(new Blob([response.data]))
-        const link = document.createElement('a')
-        link.href = url
-        link.setAttribute('download', this.doc.file_name)
-        document.body.appendChild(link)
-        link.click()
-        link.remove()
-      })
-    },
-
     getDocument (docId) {
       this.$http.get('/api/documents/' + docId + '?format=json')
         .then(request => { this.buildDocument(null, request.data) })
@@ -114,7 +102,10 @@ export default {
   },
   components: {
     Breadcrumbs,
-    Tags
+    Tags,
+    DownloadDocument,
+    EditDocument,
+    DeleteDocument
   }
 }
 </script>

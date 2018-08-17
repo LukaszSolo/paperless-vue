@@ -3,7 +3,10 @@
     <Breadcrumbs :breadcrumbs="breadcrumbs" />
     <v-container grid-list-sm fluid class="grey lighten-4" fill-height>
       <v-layout row wrap>
-        <v-flex xs2 sm3 v-for="doc in documents" :key="doc.id">
+        <v-flex xs2 sm3 v-if="documents.length == 0">
+          <p class="headline">No documents found</p>
+        </v-flex>
+        <v-flex xs2 sm3 v-else v-for="doc in documents" :key="doc.id">
           <Document :doc="doc"></Document>
         </v-flex>
       </v-layout>
