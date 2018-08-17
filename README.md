@@ -10,26 +10,27 @@ Paperless itself:
 [Paperless Github](https://github.com/danielquinn/paperless)
 
 The UI is based on Google Keep layout of Vuetify.js:
+
 [Base layout](https://vuetifyjs.com/en/examples/layouts/googleKeep)
 
 ## Requirements
 - For RC1 - latest Paperless (starting from commit `fcd36c84` ) as it will include fix to enable CORS
-- modification of middleware.py to allow API edits. Add: `setattr(request, '_dont_enforce_csrf_checks', True)` in def `process_request(self, request):` 
+- modification of middleware.py to allow API edits. Add: `setattr(request, '_dont_enforce_csrf_checks', True)` in `def process_request(self, request):` 
 
-# The RC1 works with a couple of assumtions:
+## The RC1 works with a couple of assumtions:
 
 - Paperless is configured to allow anonymous login: `PAPERLESS_DISABLE_LOGIN="true"`
 - CORS are enabled for API calls from another domain/port `CORS_ORIGIN_WHITELIST=`
 
-# The RC2 candidate will be in a more complete state:
+## The RC2 candidate will be in a more complete state:
 - proper login/logout workflow
 - add/edit objects
 
-# The RC3 is a semi-beta release:
+## The RC3 is a semi-beta release:
 
 - integrated with Django and can be a drop in replacement
 
-# Roadmap:
+## Roadmap:
 
 - version 0.1
   - [x] initial code
